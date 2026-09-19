@@ -5,6 +5,9 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <X11/XKBlib.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
@@ -516,6 +519,21 @@ saveerror(Display *dpy, XErrorEvent *ee)
 	return 0;
 }
 
+static void update_state(const char *content) {
+    const char *home = getenv("HOME");
+    if (!home) return;
+    char path[512];
+    snprintf(path, sizeof(path), "%s/.cache/ptrkeys", home);
+    char dirpath[512];
+    snprintf(dirpath, sizeof(dirpath), "%s/.cache", home);
+    mkdir(dirpath, 0755);
+    FILE *f = fopen(path, "w");
+    if (f) {
+        fprintf(f, "%s", content ? content : "");
+        fclose(f);
+    }
+}
+
 static void
 msleep(long ms)
 {
@@ -557,6 +575,7 @@ grabkeyboard(const Arg *keysym)
 		exit(1);
 	}
 	iskeyboardgrabbed = 1;
+	update_state("MOUSE");
 	if (keysym && keysym->ul) {
 		KeyCode code = XKeysymToKeycode(dpy, keysym->ul);
 		waitforrelease(code);
@@ -572,6 +591,7 @@ ungrabkeyboard(const Arg *ignored)
 	XKeyboardControl ctrl = {.auto_repeat_mode=AutoRepeatModeDefault};
 	XChangeKeyboardControl(dpy, KBAutoRepeatMode, &ctrl);
 	iskeyboardgrabbed = 0;
+	update_state("");
 	// Stop moving the pointer when the keyboard is ungrabbed, even if movement
 	// keys are pressed.
 	resetmovement(NULL);

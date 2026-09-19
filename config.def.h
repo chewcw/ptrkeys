@@ -41,34 +41,38 @@ static Key keys[] = {
 // If the keyboard will be grabbed while a key is held down, auto-repeat must
 // be disabled for the key using the NOREPEAT option. This could be
 // inconvenient if the key is frequently used outside of ptrkeys.
-{Mod4Mask,   XK_w,          GRAB,           grabkeyboard,        {.ul=XK_w},       NULL,            {0}},
+{Mod4Mask,   XK_m,          GRAB,           grabkeyboard,        {.ul=XK_m},      NULL,            {0}},
 {0,          XK_q,          0,              ungrabkeyboard,      {0},              NULL,            {0}},
-{0,          XK_Select,     GRAB|NOREPEAT,  grabkeyboard,        {0},              ungrabkeyboard,  {0}},
-{ShiftMask,  XK_Select,     GRAB|NOREPEAT,  grabandmove2scroll,  {0},              NULL,            {0}},
-{Mod4Mask,   XK_v,          GRAB,           togglegrabkeyboard,  {0},              NULL,            {0}},
+// {0,          XK_Select,     GRAB|NOREPEAT,  grabkeyboard,        {0},              ungrabkeyboard,  {0}},
+// {ShiftMask,  XK_Select,     GRAB|NOREPEAT,  grabandmove2scroll,  {0},              NULL,            {0}},
+// {Mod4Mask,   XK_m,         GRAB,           togglegrabkeyboard,  {0},              NULL,            {0}},
 {0,          XK_x,          0,              quit,                {0},              NULL,            {0}},
-// Directional control with WASD.
-{0,          XK_w,          0,              movestart,           {.i=UP},          movestop,        {.i=UP}},
-{0,          XK_a,          0,              movestart,           {.i=LEFT},        movestop,        {.i=LEFT}},
-{0,          XK_s,          0,              movestart,           {.i=DOWN},        movestop,        {.i=DOWN}},
-{0,          XK_d,          0,              movestart,           {.i=RIGHT},       movestop,        {.i=RIGHT}},
+// Directional control with vim hjkl.
+{0,          XK_h,          0,              movestart,           {.i=LEFT},        movestop,        {.i=LEFT}},
+{0,          XK_j,          0,              movestart,           {.i=DOWN},        movestop,        {.i=DOWN}},
+{0,          XK_k,          0,              movestart,           {.i=UP},          movestop,        {.i=UP}},
+{0,          XK_l,          0,              movestart,           {.i=RIGHT},       movestop,        {.i=RIGHT}},
+// Scroll up/down/left/right.
+{0,          XK_u,          0,              scrollstart,         {.i=UP},          scrollstop,       {.i=UP}},
+{0,          XK_n,          0,              scrollstart,         {.i=DOWN},        scrollstop,       {.i=DOWN}},
+{0,          XK_y,          0,              scrollstart,         {.i=LEFT},         scrollstop,       {.i=LEFT}},
+{0,          XK_b,          0,              scrollstart,         {.i=RIGHT},        scrollstop,       {.i=RIGHT}},
 // Scrolling
-{0,          XK_Shift_L,    0,              move2scroll,         {.i=1},           move2scroll,     {.i=0}},
-{0,          XK_f,          0,              togglem2s,           {0},              NULL,            {0}},
+// {0,          XK_Shift_L,    0,              move2scroll,         {.i=1},           move2scroll,     {.i=0}},
+// {0,          XK_t,          0,              togglem2s,           {0},              NULL,            {0}},
 // Speed multiply/divide.
 {0,          XK_Alt_L,      0,              dividespeed,         {.f=8},           multiplyspeed,   {.f=8}},
-{0,          XK_Control_L,  0,              multiplyspeed,       {.f=32},          dividespeed,     {.f=32}},
-{0,          XK_j,          0,              dividespeed,         {.f=8},           multiplyspeed,   {.f=8}},
-{0,          XK_k,          0,              dividespeed,         {.f=2},           multiplyspeed,   {.f=2}},
-{0,          XK_l,          0,              multiplyspeed,       {.f=4},           dividespeed,     {.f=4}},
-{0,          XK_semicolon,  0,              multiplyspeed,       {.f=8},           dividespeed,     {.f=8}},
+{0,          XK_Control_L,  0,              multiplyspeed,       {.f=8},          dividespeed,     {.f=8}},
+// {0,          XK_comma,      0,              dividespeed,         {.f=8},           multiplyspeed,   {.f=8}},
+// {0,          XK_period,     0,              dividespeed,         {.f=2},           multiplyspeed,   {.f=2}},
+// {0,          XK_slash,      0,              multiplyspeed,       {.f=4},           dividespeed,     {.f=4}},
+// {0,          XK_semicolon,  0,              multiplyspeed,       {.f=8},           dividespeed,     {.f=8}},
 // Left-handed clicking.
-{0,          XK_space,      0,              clickpress,          {.ui=BTNLEFT},    clickrelease,    {.ui=BTNLEFT}},
-{0,          XK_e,          0,              clickpress,          {.ui=BTNRIGHT},   clickrelease,    {.ui=BTNRIGHT}},
-{0,          XK_r,          0,              clickpress,          {.ui=BTNMIDDLE},  clickrelease,    {.ui=BTNMIDDLE}},
+{0,          XK_s,          0,              clickpress,          {.ui=BTNLEFT},    clickrelease,    {.ui=BTNLEFT}},
+{0,          XK_f,          0,              clickpress,          {.ui=BTNRIGHT},   clickrelease,    {.ui=BTNRIGHT}},
+{0,          XK_d,          0,              clickpress,          {.ui=BTNMIDDLE},  clickrelease,    {.ui=BTNMIDDLE}},
 // Right-handed clicking, for dragging, etc.
-{0,          XK_n,          0,              clickpress,          {.ui=BTNRIGHT},   clickrelease,    {.ui=BTNRIGHT}},
-{0,          XK_m,          0,              clickpress,          {.ui=BTNMIDDLE},  clickrelease,    {.ui=BTNMIDDLE}},
+
 // Debugging
-{Mod4Mask,   XK_g,          GRAB,           resetmovement,       {0},              NULL,            {0}},
+// {Mod4Mask,   XK_g,          GRAB,           resetmovement,       {0},              NULL,            {0}},
 };

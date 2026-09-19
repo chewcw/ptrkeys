@@ -108,6 +108,7 @@ runeventloop()
 		} else {
 			XEvent ev;
 			XPeekEvent(dpy, &ev);
+			msleep(1000 / FPS);
 			clock_gettime(CLOCK_MONOTONIC, &then);
 		}
 	}

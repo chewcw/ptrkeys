@@ -46,7 +46,7 @@ static Key keys[] = {
 // {0,          XK_Select,     GRAB|NOREPEAT,  grabkeyboard,        {0},              ungrabkeyboard,  {0}},
 // {ShiftMask,  XK_Select,     GRAB|NOREPEAT,  grabandmove2scroll,  {0},              NULL,            {0}},
 // {Mod4Mask,   XK_m,         GRAB,           togglegrabkeyboard,  {0},              NULL,            {0}},
-{0,          XK_x,          0,              quit,                {0},              NULL,            {0}},
+// {0,          XK_x,          0,              quit,                {0},              NULL,            {0}},
 // Directional control with vim hjkl.
 {0,          XK_h,          0,              movestart,           {.i=LEFT},        movestop,        {.i=LEFT}},
 {0,          XK_j,          0,              movestart,           {.i=DOWN},        movestop,        {.i=DOWN}},

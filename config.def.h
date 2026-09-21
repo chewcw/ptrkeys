@@ -41,7 +41,7 @@ static Key keys[] = {
 // If the keyboard will be grabbed while a key is held down, auto-repeat must
 // be disabled for the key using the NOREPEAT option. This could be
 // inconvenient if the key is frequently used outside of ptrkeys.
-{Mod4Mask,   XK_m,          GRAB,           grabkeyboard,        {.ul=XK_m},      NULL,            {0}},
+{Mod4Mask,   XK_m,          GRAB,           togglegrabkeyboard2, {0},              NULL,            {0}},
 {0,          XK_q,          0,              ungrabkeyboard,      {0},              NULL,            {0}},
 // {0,          XK_Select,     GRAB|NOREPEAT,  grabkeyboard,        {0},              ungrabkeyboard,  {0}},
 // {ShiftMask,  XK_Select,     GRAB|NOREPEAT,  grabandmove2scroll,  {0},              NULL,            {0}},

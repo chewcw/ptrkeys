@@ -390,7 +390,7 @@ keypress(XEvent *e)
 
 	for (size_t i = 0; i < LEN(keys); i++) {
 		if (keysym != keys[i].keysym) continue;
-		if (iskeyboardgrabbed && keys[i].mod) continue;
+		if (iskeyboardgrabbed && keys[i].mod && keys[i].pressfunc != togglegrabkeyboard2) continue;
 		if (!iskeyboardgrabbed && NOLOCKMASK(keys[i].mod) != NOLOCKMASK(ev->state)) {
 			continue;
 		}
@@ -600,6 +600,17 @@ ungrabkeyboard(const Arg *ignored)
 
 void
 togglegrabkeyboard(const Arg *ignored)
+{
+	(void)ignored;
+	if (iskeyboardgrabbed) {
+		ungrabkeyboard(NULL);
+	} else {
+		grabkeyboard(NULL);
+	}
+}
+
+void
+togglegrabkeyboard2(const Arg *ignored)
 {
 	(void)ignored;
 	if (iskeyboardgrabbed) {

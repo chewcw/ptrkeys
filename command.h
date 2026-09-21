@@ -31,6 +31,7 @@ enum KeyOpts {
 void grabkeyboard(const Arg *keysym); // Wait for keysym to be released, if given.
 void ungrabkeyboard(const Arg *ignored);
 void togglegrabkeyboard(const Arg *ignored);
+void togglegrabkeyboard2(const Arg *ignored);
 void grabandmove2scroll(const Arg *ignored);
 
 // Movement and scrolling:
